@@ -1,0 +1,6 @@
+<article>
+  <p>{{noteProp?.date}}</p>
+  <p>{{noteProp?.text}}</p>
+  <span *ngIf="noteProp?.urgent" id="priority" class="material-icons">priority_high</span>
+  <span class="material-icons" (click)="notify.emit()"> delete_forever </span>
+</article>

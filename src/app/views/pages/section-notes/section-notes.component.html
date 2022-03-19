@@ -1,0 +1,3 @@
+<section id="list-notes">
+    <app-note *ngFor="let note of listNotes" [noteProp]="note" (notify)="deleteNoteOfList(note.id)"></app-note>
+</section>
