@@ -39,3 +39,8 @@ textarea {
 
   border: 1px solid #ed145b;
 }
+
+.errors {
+  color: #AA0000;
+  font-size: 14px;
+}

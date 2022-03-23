@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from "@angular/common/http";
+
 import { AppComponent } from './app.component';
 import { FormNoteComponent } from './views/pages/form-note/form-note.component';
 import { SectionNotesComponent } from './views/pages/section-notes/section-notes.component';
@@ -20,7 +22,9 @@ import { HomeComponent } from './views/pages/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
