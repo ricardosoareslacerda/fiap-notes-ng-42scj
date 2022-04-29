@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Note } from '../domain/note';
 
 @Injectable({
@@ -11,6 +12,9 @@ export class NoteService {
   private apiUrl: string;
 
   genId: any;
+
+  private newNoteSource = new Subject<Note>();
+  newNoteProvider = this.newNoteSource.asObservable();
 
   constructor(private http: HttpClient) { 
     this.genId = generateId();
@@ -32,7 +36,11 @@ export class NoteService {
   // }
 
   addNote(textNote: string){
-    return this.http.post(`${this.apiUrl}/notes`, {text: textNote});
+    return this.http.post<Note>(`${this.apiUrl}/notes`, {text: textNote});
+  }
+
+  notifyNewNoteAdded(note: Note){
+    this.newNoteSource.next(note);
   }
 }
 

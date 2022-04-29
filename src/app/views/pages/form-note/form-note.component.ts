@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Note } from 'src/app/domain/note';
 import { NoteService } from 'src/app/services/note.service';
 
 @Component({
@@ -27,7 +28,10 @@ export class FormNoteComponent implements OnInit {
       const note = this.checkoutForm.value;
 
       this.noteService.addNote(note.text).subscribe(
-        () => this.checkoutForm.reset()
+        (data: Note) => {
+          this.checkoutForm.reset();
+          this.noteService.notifyNewNoteAdded(data);
+        }
       );
     }
   }
