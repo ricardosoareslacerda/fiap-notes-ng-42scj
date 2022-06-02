@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NoteComponent } from './note.component';
 
-describe('NoteComponent', () => {
+fdescribe('NoteComponent', () => {
   let component: NoteComponent;
   let fixture: ComponentFixture<NoteComponent>;
 
@@ -18,6 +18,10 @@ describe('NoteComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+  
+  afterEach(() =>
+    console.log("tudo terminou!")
+  );
 
   it('should create', () => {
     expect(component).toBeTruthy();
