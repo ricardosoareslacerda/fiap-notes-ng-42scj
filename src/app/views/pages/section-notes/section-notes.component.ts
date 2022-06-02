@@ -9,34 +9,50 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./section-notes.component.css'],
 })
 export class SectionNotesComponent implements OnInit {
-  notes: Note[];
-  subscription: Subscription;
 
-  constructor(private notesService: NoteService) {
+  //notes: any;
+  notes: Note[];  
+  subscription: Subscription;
+  
+  constructor(
+    private noteService: NoteService
+  ) {
     this.notes = [];
-    this.subscription = this.notesService.newNoteProvider.subscribe((note) => {
-      // alert(note);
-      this.notes.push(note);
-    });
+    this.subscription = this.noteService.newNoteProvider.subscribe(
+      (note) => {
+        this.notes.push(note);
+      }
+    );
+    this.subscription = this.noteService.editUpdatedNoteProvider.subscribe(
+      (note) => {
+        this.getNotes();
+      }
+    );
   }
 
   ngOnInit(): void {
     this.getNotes();
   }
 
-  getNotes() {
-    this.notesService.getNotes().subscribe({
-      next: (data) => (this.notes = data),
+  getNotes(){
+    this.noteService.getNotes().subscribe({
+      next: (data) => this.notes = data,
       error: (err) => console.error(err),
-      complete: () => console.log('Deu tudo certo'),
+      complete: () => console.log("Deu tudo certo")
     });
   }
 
-  delete(id: number) {
-    this.notesService.deleteNote(id).subscribe(() => this.getNotes());
+  delete(id: number){
+    this.noteService.deleteNote(id).subscribe(
+      () => this.getNotes()
+    );
   }
 
-  showError() {
-    console.log('Erro ao obter os dados');
+  showEdit(data: Note){
+    this.noteService.notifyEditNoteEditted(data);
+  }
+
+  showError(){
+    console.log("Erro ao obter os dados")
   }
 }

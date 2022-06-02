@@ -13,8 +13,16 @@ export class NoteService {
 
   genId: any;
 
+  // fontes de dados da mensagem de uma lugar pro outro
+  // RXJS - Biblioteca padrao do angular 
   private newNoteSource = new Subject<Note>();
   newNoteProvider = this.newNoteSource.asObservable();
+  
+  private editNoteSource = new Subject<Note>();
+  editNoteProvider = this.editNoteSource.asObservable();
+  
+  private editUpdatedNoteSource = new Subject<Note>();
+  editUpdatedNoteProvider = this.editUpdatedNoteSource.asObservable();
 
   constructor(private http: HttpClient) { 
     this.genId = generateId();
@@ -39,8 +47,21 @@ export class NoteService {
     return this.http.post<Note>(`${this.apiUrl}/notes`, {text: textNote});
   }
 
+  editNote(id: number, note: string) {
+    return this.http.put<Note>(`${this.apiUrl}/notes/${id}`, {text: note});
+  }
+
+  // metodo para inscricao do componente no provider
   notifyNewNoteAdded(note: Note){
     this.newNoteSource.next(note);
+  }
+
+  notifyEditNoteEditted(note: Note){
+    this.editNoteSource.next(note);
+  }
+
+  notifyEditNoteUpdated(note: Note){
+    this.editUpdatedNoteSource.next(note);
   }
 }
 

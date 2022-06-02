@@ -10,7 +10,7 @@ export class NoteComponent implements OnInit {
 
   @Input() noteProp: Note | undefined;
   @Output() notify = new EventEmitter();
-
+  @Output() notifyEdit = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {

@@ -2,5 +2,6 @@
   <p>{{noteProp?.date | date: "dd/MM/yyyy HH:mm"}}</p>
   <p>{{noteProp?.text}}</p>
   <span *ngIf="noteProp?.urgent" id="priority" class="material-icons">priority_high</span>
-  <span class="material-icons" (click)="notify.emit()"> delete_forever </span>
+  <span class="material-icons" id="edit" (click)="notifyEdit.emit()">edit</span>
+  <span class="material-icons" id="delete" (click)="notify.emit()">delete_forever</span>
 </article>

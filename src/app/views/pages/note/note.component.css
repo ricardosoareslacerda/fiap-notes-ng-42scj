@@ -24,10 +24,26 @@ article .material-icons {
   transition: 0.2s;
 }
 
+article .material-icons-edit {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+
+  font-size: 32px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 article .material-icons:hover {
   color: #333;
   transform: scale(1.1);
   transform: rotate(360deg);
+}
+
+#edit {
+  position: absolute;
+  bottom: 5px;
+  right: 30px;
 }
 
 #priority {

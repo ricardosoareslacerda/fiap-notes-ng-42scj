@@ -1,6 +1,6 @@
 <aside>
   <img src="/assets/logo.png" />
-  <h1>{{ title }}</h1>
+  <h1>{{ title }}</h1>  
   <form id="form-notes" [formGroup]="checkoutForm" (submit)="sendNote()">
     <div class="input-group">
       <label>Nota:</label>
@@ -20,6 +20,8 @@
         </div>
       </div>
     </div>
-    <button>Salvar</button>
+    <button formControlName="noteId" *ngIf="noteIdEditable == 0">Salvar</button>
+    <button formControlName="noteId" *ngIf="noteIdEditable != 0">Editar</button>
   </form>
+  <button (click)="cleanNote()" [style.visibility]="(noteIdEditable == 0) ? 'hidden' : 'visible'">Limpar</button>
 </aside>
